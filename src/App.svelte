@@ -6,11 +6,14 @@
 	// tabs
 	let items =['Current Polls', 'Add New Polls']
 	let activeItem = 'Current Polls'
+	const tabsChange=(event)=>{
+		activeItem = event.detail
+	}
 </script>
 
 <Header/>
 <main>
-	<Tabs { activeItem } { items }/>
+	<Tabs { activeItem } { items } on:tabsChange={tabsChange}/>
 </main>
 <Footer/>
 <style>
