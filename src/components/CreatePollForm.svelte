@@ -1,5 +1,6 @@
 <script>
 import { createEventDispatcher } from 'svelte'
+import PollStore from '../stores/PollStore'
 import Button from '../shared/Button.svelte'
 
 let fields = { question: '', answerA: '', answerB: ''}
@@ -35,7 +36,10 @@ const handleSubmit = ()=>{
       //  add new poll
     if (valid){
       let poll ={ ...fields, votesA:0, votesB:0, id: Math.random()}
-      dispatch('add', poll)
+      PollStore.update( currentPoll=>{
+        return [poll, ...currentPoll ]
+      })
+      dispatch('add')
     }
 }
 </script>
@@ -60,7 +64,7 @@ const handleSubmit = ()=>{
 
 
 <style>
-form{
+  form{
     width: 400px;
     margin: 0 auto;
     text-align: center;
@@ -76,7 +80,7 @@ form{
     margin: 10px auto;
     text-align: left;
   }
-    .error{
+  .error{
     font-weight: bold;
     font-size: 12px;
     color: #d91b42;

@@ -16,7 +16,7 @@ let dispatch= createEventDispatcher()
     </ul>
 </div>
 <style>
-      .tabs{
+  .tabs{
     margin-bottom: 40px;
   }
   ul{
